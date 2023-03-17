@@ -38,27 +38,6 @@ function hand_value() {
     echo $sum
 }
 
-function crupier_value() {
-    local sum=0
-    local aces=0
-
-    for card in "${crupier[@]}"; do
-	local value=$(card_value "$card")
-	sum=$((sum + value))
-
-	if [[ $value -eq 11 ]]; then
-	    aces=$((aces + 1))
-	fi
-    done
-
-    while [[ $sum -gt 21 && $aces -gt 0 ]]; do
-	sum=$((sum - 10))
-	aces=$((aces - 1))
-    done
-
-    echo $sum
-}
-
 # Juego
 echo "Blackjack de Carlos"
 
@@ -102,37 +81,3 @@ while true; do
             ;;
     esac
 done
-
-crupier=()
-crupier+=("$(draw_card)")
-crupier+=("$(draw_card)")
-echo "Crupier: ${crupier[0]}, ${crupier[1]}"
-crupier_value=$(crupier_value)
-
-if [[ $crupier_hand -eq 21 ]]; then
-    echo "Crupier saco 21."
-    exit 0
-fi
-
-while [[ $crupier_value -lt 17 ]]; do
-	crupier+=("$(draw_card)")
-	echo "Crupier saco: ${crupier[-1]}"
-	crupier_value=$(crupier_value)
-
-	if [[ $crupier_value -gt 21 ]]; then
-	    echo "Crupier se paso. Ganaste!"
-	    exit 0
-        elif [[ $crupier_value -eq 21 ]]; then
-	    echo "Crupier saco 21."
-	else
-	    echo "La mano del crupier vale: $crupier_value."
-	fi
-done
-
-if [[ $hand_value -gt $crupier_value ]]; then
-    echo "Felicidades. Ganaste."
-elif [[ $hand_value -lt $crupier_value ]]; then
-    echo "Has perdido."
-else
-    echo "Es un empate."
-fi
