@@ -66,7 +66,7 @@ function crupier_value() {
 echo "..:: BLACKJACK ::.."
 sleep 2
 echo ""
-echo -n "Inicianddo"
+echo -n "Iniciando"
 sleep 1
 echo -n "."
 sleep 1
