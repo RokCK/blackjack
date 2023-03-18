@@ -66,6 +66,7 @@ function crupier_value() {
 echo "..:: BLACKJACK ::.."
 sleep 2
 echo ""
+echo "-----------"
 echo -n "Iniciando"
 sleep 1
 echo -n "."
@@ -74,14 +75,12 @@ echo -n "."
 sleep 1
 echo -n "."
 echo ""
-sleep 2
 hand=()
 hand+=("$(draw_card)")
 hand+=("$(draw_card)")
 
-sleep 1
+sleep 2
 echo ""
-echo "-----------"
 echo "Tu mano: ${hand[0]}, ${hand[1]}."
 hand_value=$(hand_value)
 sleep 1
@@ -158,7 +157,7 @@ if [[ $crupier_hand -eq 21 ]]; then
 fi
 
 while [[ $crupier_value -lt 17 ]]; do
-        sleep 3
+        sleep 2
 	crupier+=("$(draw_card)")
 	echo "Crupier saco: ${crupier[-1]}."
 	crupier_value=$(crupier_value)
