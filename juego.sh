@@ -6,8 +6,8 @@
 # Funciones
 function draw_card() {
     local suits=("Treboles" "Diamantes" "Corazones" "Espadas")
-    local ranks=("2" "3" "4" "5" "6" "7" "8" "9" "10" "Jota" "Reina" "Rey" "As")
-    echo "${ranks[RANDOM % 13]} de ${suits[RANDOM % 4]}"
+    local ranks=("2" "2" "2" "2" "3" "3" "3" "3" "4" "4" "4" "4" "5" "5" "5" "5" "6" "6" "6" "6" "7" "7" "7" "7" "8" "8" "8" "8" "9" "9" "9" "9" "10" "10" "10" "10" "Jota" "Jota" "Jota" "Jota" "Reina" "Reina" "Reina" "Reina" "Rey" "Rey" "Rey" "Rey" "As" "As" "As" "As")
+    echo "${ranks[RANDOM % 52]} de ${suits[RANDOM % 4]}"
 }
 
 function card_value() {
@@ -64,22 +64,16 @@ function crupier_value() {
 
 # Juego
 echo "..:: BLACKJACK ::.."
-sleep 2
+sleep 1
 echo ""
 echo "-----------"
-echo -n "Iniciando"
-sleep 1
-echo -n "."
-sleep 1
-echo -n "."
-sleep 1
-echo -n "."
+echo -n "Iniciando:"
 echo ""
 hand=()
 hand+=("$(draw_card)")
 hand+=("$(draw_card)")
 
-sleep 2
+sleep 1
 echo ""
 echo "Tu mano: ${hand[0]}, ${hand[1]}."
 hand_value=$(hand_value)
@@ -108,15 +102,13 @@ while true; do
             hand_value=$(hand_value)
 
             if [[ $hand_value -gt 21 ]]; then
-		sleep 1
                 echo "Tu mano vale $hand_value. Te pasaste. Has perdido."
 		echo ""
 		sleep 1
-		echo "Juego terminado"
+		echo "Juego terminado."
 		echo "-----------"
                 exit 0
             elif [[ $hand_value -eq 21 ]]; then
-		sleep 1
                 echo "Tu mano vale 21! Felicidades. Ganaste."
 		echo ""
 		sleep 1
@@ -124,17 +116,14 @@ while true; do
 		echo "-----------"
                 exit 0
             else
-		sleep 1
                 echo "Tu mano vale: $hand_value."
             fi
             ;;
         q)
-	    sleep 1
             echo "Te quedas con una mano de $hand_value."
             break
             ;;
         *)
-	    sleep 1
             echo "Opcion inexistente. Escribe 'p' o 'q'."
             ;;
     esac
@@ -147,23 +136,23 @@ crupier+=("$(draw_card)")
 crupier+=("$(draw_card)")
 echo "Crupier: ${crupier[0]}, ${crupier[1]}."
 crupier_value=$(crupier_value)
-sleep 2
+sleep 1
 echo "La mano del crupier vale $crupier_value."
 
 if [[ $crupier_hand -eq 21 ]]; then
-    sleep 2
+    sleep 1
     echo "Crupier saco 21."
     exit 0
 fi
 
 while [[ $crupier_value -lt 17 ]]; do
-        sleep 2
+        sleep 1
 	crupier+=("$(draw_card)")
 	echo "Crupier saco: ${crupier[-1]}."
 	crupier_value=$(crupier_value)
 
 	if [[ $crupier_value -gt 21 ]]; then
-	    sleep 2
+	    sleep 1
 	    echo "La mano del crupier vale $crupier_value. Se paso. Ganaste."
 	    echo ""
 	    sleep 1
@@ -171,16 +160,16 @@ while [[ $crupier_value -lt 17 ]]; do
 	    echo "-----------"
 	    exit 0
         elif [[ $crupier_value -eq 21 ]]; then
-	    sleep 2
+	    sleep 1
 	    echo "Crupier saco 21."
 	else
-	    sleep 2
+	    sleep 1
 	    echo "La mano del crupier vale: $crupier_value."
 	fi
 done
 
 echo ""
-sleep 2
+sleep 1
 if [[ $hand_value -gt $crupier_value ]]; then
     echo "$hand_value vence a $crupier_value. Felicidades. Ganaste."
 elif [[ $hand_value -lt $crupier_value ]]; then
@@ -190,5 +179,5 @@ else
 fi
 echo ""
 sleep 1
-echo "Juego terminado"
+echo "Juego terminado."
 echo "-----------"
