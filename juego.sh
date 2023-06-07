@@ -1,4 +1,4 @@
-#Title:BlackjackShell
+#Title:Blackjack-Bash
 #Author:@RokCK
 #Version:0.1.1
 #!/bin/bash
