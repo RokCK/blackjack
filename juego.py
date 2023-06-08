@@ -29,7 +29,7 @@ print("..:: BLACKJACK ::..")
 hand = [draw_card(), draw_card()]
 print(f"Tu mano: {hand[0]}, {hand[1]}")
 hand_value = hand_value(hand)
-
+print(f"Tu mano vale: {hand_value}")
 if hand_value == 21:
     print("Felicidades. Ganaste!")
     quit()
@@ -40,18 +40,18 @@ while True:
     if action == "p":
         hand.append(draw_card())
         print(f"Sacaste: {hand[-1]}")
-        hand_value = hand_value(hand)
-
-        if hand_value > 21:
-            print("Te pasaste. Has perdido.")
-            quit()
-        elif hand_value == 21:
-            print("Tu mano vale 21! Felicidades. Ganaste.")
-            quit()
-        else:
-            print(f"Tu mano vale: {hand_value}")
-    elif action == "q":
-        print("Te quedas con una mano de {hand_value}.")
-        break
-    else:
-        print("Opcion inexistente. Escribe 'p' o 'q'.")
+#        hand_value = hand_value(hand)
+#
+#        if hand_value > 21:
+#            print("Te pasaste. Has perdido.")
+#            quit()
+#        elif hand_value == 21:
+#            print("Tu mano vale 21! Felicidades. Ganaste.")
+#            quit()
+#        else:
+#            print(f"Tu mano vale: {hand_value}")
+#    elif action == "q":
+#        print("Te quedas con una mano de {hand_value}.")
+#        break
+#    else:
+#        print("Opcion inexistente. Escribe 'p' o 'q'.")
